@@ -50,13 +50,20 @@ function mouseClicked(){
         url: '/item/' + blocks[idx].id,
         success: function( result ){
           console.log( result );
+          if( result.status ){
+            $('#result').html( JSON.stringify( result.item, null, 2 ) );
+          }else{
+            $('#result').html( result.message );
+          }
         },
         error: function(){
           console.log( 'ajax error.' );
+          $('#result').html( 'ajax error.' );
         }
       });
     }else{
       select_index = -1;
+      $('#result').html( '' );
     }
   }
 
